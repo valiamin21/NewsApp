@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewsPostListActivity"
+    tools:context=".views.MainActivity"
     android:layoutDirection="rtl">
 
-    <include layout="@layout/content_news_post_list"/>
+    <include layout="@layout/content_main"/>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"

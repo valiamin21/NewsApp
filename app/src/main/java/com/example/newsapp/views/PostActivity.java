@@ -1,7 +1,8 @@
-package com.example.newsapp;
+package com.example.newsapp.views;
 
 import android.os.Bundle;
 
+import com.example.newsapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
