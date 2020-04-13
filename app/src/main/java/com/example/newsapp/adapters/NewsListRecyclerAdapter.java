@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.newsapp.R;
 import com.example.newsapp.data_model.NewsItem;
+import com.example.newsapp.views.PostActivity;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<NewsListRecycl
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "item " + newsItem.getId(), Toast.LENGTH_SHORT).show();
+                PostActivity.start(context,newsItem.getId());
             }
         });
     }

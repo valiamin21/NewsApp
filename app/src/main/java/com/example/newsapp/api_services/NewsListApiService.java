@@ -8,6 +8,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.newsapp.R;
 import com.example.newsapp.data_model.NewsItem;
 
 import org.json.JSONArray;
@@ -22,7 +23,7 @@ public class NewsListApiService {
     public static final int CATEGORY_DEFAULT_ID = -1;
 
     public static void requestNewsList(final Context context, int categoryId, final OnNewsListApiFinished onNewsListApiFinished) {
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest("http://10.0.2.2:80/news/" + (categoryId == CATEGORY_DEFAULT_ID ? "" : categoryId),
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(context.getString(R.string.root_api_url)+"/news/" + (categoryId == CATEGORY_DEFAULT_ID ? "" : categoryId),
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -34,7 +35,9 @@ public class NewsListApiService {
                                 newsItem.setId(jsonObject.getInt("id"));
                                 newsItem.setTitle(jsonObject.getString("title"));
                                 newsItem.setShortDescription(jsonObject.getString("short_description"));
-                                newsItem.setImage("http://10.0.2.2" + jsonObject.getString("image"));
+                                newsItem.setImage(context.getString(R.string.root_api_url) + jsonObject.getString("image"));
+                                newsItem.setCategoryName(jsonObject.getString("category_name"));
+                                newsItem.setCategoryId(jsonObject.getInt("category"));
 
                                 newsItemList.add(newsItem);
                             }

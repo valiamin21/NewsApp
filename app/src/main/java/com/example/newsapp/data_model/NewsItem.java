@@ -6,6 +6,8 @@ public class NewsItem {
     private String shortDescription;
     private String image;
     private boolean isBookmarked;
+    private String categoryName;
+    private int categoryId;
 
     public int getId() {
         return id;
@@ -45,5 +47,21 @@ public class NewsItem {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 }

@@ -60,7 +60,6 @@ public class NewsItemListFragment extends Fragment {
             @Override
             public void onResponse(List<NewsItem> newsItemList) {
                 if (recyclerAdapter == null) {
-                    Toast.makeText(getContext(), "" + newsItemList.size(), Toast.LENGTH_SHORT).show();
                     recyclerAdapter = new NewsListRecyclerAdapter(getContext(), newsItemList);
                     newsListRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
                     newsListRecyclerView.setAdapter(recyclerAdapter);
