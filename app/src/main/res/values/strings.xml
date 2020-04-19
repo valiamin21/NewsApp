@@ -105,4 +105,7 @@
     <string name="news">اخبار</string>
 
     <string name="root_api_url">http://10.0.2.2</string>
+
+    <string name="drawerToggle_open">open</string>
+    <string name="drawerToggleClose">close</string>
 </resources>
