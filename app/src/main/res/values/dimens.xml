@@ -29,4 +29,6 @@
 
     <dimen name="app_radius">5dp</dimen>
     <dimen name="app_radius_x">10dp</dimen>
+
+    <dimen name="app_card_elevation">8dp</dimen>
 </resources>
