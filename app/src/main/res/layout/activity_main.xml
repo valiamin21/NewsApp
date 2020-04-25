@@ -15,6 +15,7 @@
         android:layout_width="@dimen/nav_width"
         android:layout_height="match_parent"
         app:menu="@menu/menu_post"
-        android:layout_gravity="start"/>
+        android:layout_gravity="start"
+        app:itemIconTint="@color/colorAccent"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
