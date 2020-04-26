@@ -1,11 +1,5 @@
 <resources>
-    <string name="app_name">News app</string>
-
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-
-    <string name="home_second">Home Second</string>
+    <string name="app_name">خبررسان</string>
     <string name="news">اخبار</string>
 
     <string name="root_api_url">http://10.0.2.2</string>
