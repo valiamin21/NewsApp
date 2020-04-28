@@ -79,21 +79,20 @@ public class MainActivity extends AppCompatActivity implements CategoryTagsRecyc
     private void startCollapsingImageAnimation(){
         int animationDuration = 20000;
         AnimationSet animationSet = new AnimationSet(true);
-        animationSet.setInterpolator(new AccelerateDecelerateInterpolator());
 
-        ScaleAnimation scaleAnimation = new ScaleAnimation(2f,4f,2f,4f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+        ScaleAnimation scaleAnimation = new ScaleAnimation(2f,4f,2f,3f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
         scaleAnimation.setDuration(animationDuration);
         scaleAnimation.setRepeatCount(Animation.INFINITE);
         scaleAnimation.setRepeatMode(Animation.REVERSE);
 
         TranslateAnimation translateAnimation =
-                new TranslateAnimation(Animation.RELATIVE_TO_SELF,0,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0,Animation.RELATIVE_TO_SELF,0.5f);
+                new TranslateAnimation(Animation.RELATIVE_TO_SELF,0,Animation.RELATIVE_TO_SELF,-0.3f,Animation.RELATIVE_TO_SELF,0,Animation.RELATIVE_TO_SELF,0);
         translateAnimation.setDuration(animationDuration);
         translateAnimation.setRepeatCount(Animation.INFINITE);
         translateAnimation.setRepeatMode(Animation.REVERSE);
 
         RotateAnimation rotateAnimation = new RotateAnimation(0,360,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
-        rotateAnimation.setDuration(animationDuration * 6);
+        rotateAnimation.setDuration(animationDuration * 10);
         rotateAnimation.setRepeatCount(Animation.INFINITE);
 
         animationSet.addAnimation(scaleAnimation);
