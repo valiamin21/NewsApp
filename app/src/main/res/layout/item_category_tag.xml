@@ -12,7 +12,8 @@
     app:contentPaddingBottom="@dimen/standard_margin"
     app:contentPaddingLeft="@dimen/standard_margin_x2"
     app:contentPaddingRight="@dimen/standard_margin_x2"
-    app:contentPaddingTop="@dimen/standard_margin">
+    app:contentPaddingTop="@dimen/standard_margin"
+    android:theme="@style/AppTheme.AppBarOverlay">
 
     <com.example.newsapp.custom_views.CusTextView
         android:id="@+id/category_name_text"
