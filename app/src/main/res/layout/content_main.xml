@@ -23,7 +23,7 @@
                 android:layout_height="250dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/newspaper_image"
+                android:src="@drawable/world"
                 app:layout_collapseMode="parallax" />
 
             <androidx.recyclerview.widget.RecyclerView
