@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.newsapp.R;
+import com.example.newsapp.Utilities;
 import com.example.newsapp.adapters.CategoryTagsRecyclerAdapter;
 import com.example.newsapp.api_services.CategoriesApiService;
 import com.example.newsapp.data_model.Category;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements CategoryTagsRecyc
 
     private void setupViews() {
         toolbar = findViewById(R.id.toolbar);
+        Utilities.applyFontForAViewGroup(toolbar,this);
         setSupportActionBar(toolbar);
 
         categoryTagsRecyclerView = findViewById(R.id.categoryTags_recyclerView);
