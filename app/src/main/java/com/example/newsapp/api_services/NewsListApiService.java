@@ -1,6 +1,7 @@
 package com.example.newsapp.api_services;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
@@ -23,7 +24,7 @@ public class NewsListApiService {
     public static final int CATEGORY_DEFAULT_ID = -1;
 
     public static void requestNewsList(final Context context, int categoryId, final OnNewsListApiFinished onNewsListApiFinished) {
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(context.getString(R.string.root_api_url)+"/news/" + (categoryId == CATEGORY_DEFAULT_ID ? "" : categoryId),
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(context.getString(R.string.root_api_url) + (categoryId == CATEGORY_DEFAULT_ID ? "/news/" : "/categories/" + categoryId),
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -51,7 +52,7 @@ public class NewsListApiService {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                onNewsListApiFinished.onErrorResponse("communication error");
+                onNewsListApiFinished.onErrorResponse("communication error ");
             }
         });
         jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(8000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

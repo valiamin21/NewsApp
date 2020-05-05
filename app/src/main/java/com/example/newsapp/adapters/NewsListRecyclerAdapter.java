@@ -57,6 +57,12 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<NewsListRecycl
         return newsItemList.size();
     }
 
+    public void refresh(List<NewsItem> newsItemList){
+        this.newsItemList.clear();
+        this.newsItemList.addAll(newsItemList);
+        notifyDataSetChanged();
+    }
+
     public class NewsItemViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView newsImage;

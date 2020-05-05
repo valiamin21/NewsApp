@@ -37,15 +37,17 @@ public class MainActivity extends AppCompatActivity implements CategoryTagsRecyc
     private Toolbar toolbar;
     private ImageView collapsingImageView;
 
+    private NewsItemListFragment newsItemListFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupViews();
 
-
+        newsItemListFragment = NewsItemListFragment.newInstance(CATEGORY_DEFAULT_ID);
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container,NewsItemListFragment.newInstance(CATEGORY_DEFAULT_ID))
+                .add(R.id.fragment_container,newsItemListFragment)
                 .commit();
 
         CategoriesApiService.requestCategoriesList(this, new CategoriesApiService.OnCategoriesApiFinished() {
@@ -106,5 +108,6 @@ public class MainActivity extends AppCompatActivity implements CategoryTagsRecyc
     @Override // @Implemented :D
     public void onSelected(Category category) {
         toolbar.setTitle(category.getName());
+        newsItemListFragment.setCategoryId(category.getId());
     }
 }

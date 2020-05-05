@@ -64,7 +64,7 @@ public class NewsItemListFragment extends Fragment {
                     newsListRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
                     newsListRecyclerView.setAdapter(recyclerAdapter);
                 } else {
-                    // TODO: 4/13/20
+                    recyclerAdapter.refresh(newsItemList);
                 }
             }
 
@@ -73,5 +73,10 @@ public class NewsItemListFragment extends Fragment {
                 Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void setCategoryId(int categoryId){
+        this.categoryId = categoryId;
+        loadDataFromServer();
     }
 }
