@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newsapp.R;
+import com.example.newsapp.api_services.NewsListApiService;
 import com.example.newsapp.data_model.Category;
 
 import java.util.List;
@@ -23,12 +24,17 @@ public class CategoryTagsRecyclerAdapter extends RecyclerView.Adapter<CategoryTa
     private Context context;
     private List<Category> categoryList;
     private final OnCategoryTagItemSelected onCategoryTagItemSelected;
-    private int selectedItem = -1;
+    private int selectedItem = 0;
 
     public CategoryTagsRecyclerAdapter(Context context, List<Category> categoryList, OnCategoryTagItemSelected onCategoryTagItemSelected) {
         this.context = context;
         this.categoryList = categoryList;
         this.onCategoryTagItemSelected = onCategoryTagItemSelected;
+
+        Category allNewsCategory = new Category();
+        allNewsCategory.setName(context.getString(R.string.all_news));
+        allNewsCategory.setId(NewsListApiService.CATEGORY_DEFAULT_ID);
+        categoryList.add(0,allNewsCategory);
     }
 
     @NonNull
@@ -45,16 +51,18 @@ public class CategoryTagsRecyclerAdapter extends RecyclerView.Adapter<CategoryTa
         if (position != selectedItem) {
             holder.categoryTagCardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white));
             holder.categoryNameTextView.setTextColor(ContextCompat.getColor(context,R.color.colorPrimary));
+        }else{
+            holder.categoryTagCardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
+            holder.categoryNameTextView.setTextColor(ContextCompat.getColor(context,R.color.white));
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.categoryTagCardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
-                holder.categoryNameTextView.setTextColor(ContextCompat.getColor(context,R.color.white));
-                int previousSelected = selectedItem;
+
+                notifyItemChanged(selectedItem);
                 selectedItem = holder.getAdapterPosition();
-                notifyItemChanged(previousSelected);
+                notifyItemChanged(selectedItem);
 
                 onCategoryTagItemSelected.onSelected(category);
             }
