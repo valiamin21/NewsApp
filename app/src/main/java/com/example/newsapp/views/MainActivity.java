@@ -85,7 +85,13 @@ public class MainActivity extends AppCompatActivity implements CategoryTagsRecyc
                 Utilities.applyFontForAViewGroup(navigationView,MainActivity.this);
             }
         },100);
-
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Log.i(TAG, "onNavigationItemSelected: " + item.getTitle());
+                return false;
+            }
+        });
     }
 
     private void startCollapsingImageAnimation(){

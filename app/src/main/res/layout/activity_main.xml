@@ -14,7 +14,7 @@
         android:id="@+id/navigationView"
         android:layout_width="@dimen/nav_width"
         android:layout_height="match_parent"
-        app:menu="@menu/menu_post"
+        app:menu="@menu/menu_navigation"
         android:layout_gravity="start"
         app:itemIconTint="@color/colorAccent"
         app:headerLayout="@layout/layout_nav_header"/>
