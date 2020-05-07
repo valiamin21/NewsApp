@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide;
 import com.example.newsapp.R;
 import com.example.newsapp.api_services.PostApiService;
 import com.example.newsapp.data_model.Post;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 public class PostActivity extends AppCompatActivity {
 
@@ -29,9 +29,8 @@ public class PostActivity extends AppCompatActivity {
         context.startActivity(starter);
     }
 
-    private CollapsingToolbarLayout collapsingToolbarLayout;
     private ImageView postImageView;
-    private TextView descriptionTextView;
+    private TextView titleTextView, descriptionTextView, categoryTextView, dateTextView;
 
     private int postId;
 
@@ -47,8 +46,6 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void setupViews() {
-        collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -60,7 +57,10 @@ public class PostActivity extends AppCompatActivity {
         });
 
         postImageView = findViewById(R.id.post_image);
+        titleTextView = findViewById(R.id.title_text);
         descriptionTextView = findViewById(R.id.description_text);
+        categoryTextView = findViewById(R.id.category_text);
+        dateTextView = findViewById(R.id.date_text);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +76,10 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onResponse(Post post) {
                 Glide.with(PostActivity.this).load(post.getImage()).into(postImageView);
-                collapsingToolbarLayout.setTitle(post.getTitle());
+                titleTextView.setText(post.getTitle());
                 descriptionTextView.setText(post.getLongDescription());
+                categoryTextView.setText(post.getCategoryName());
+                dateTextView.setText(post.getDate());
             }
 
             @Override
@@ -86,4 +88,5 @@ public class PostActivity extends AppCompatActivity {
             }
         });
     }
+
 }
