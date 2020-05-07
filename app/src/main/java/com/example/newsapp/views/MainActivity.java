@@ -1,5 +1,6 @@
 package com.example.newsapp.views;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,6 +8,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
@@ -20,6 +23,7 @@ import com.example.newsapp.adapters.CategoryTagsRecyclerAdapter;
 import com.example.newsapp.api_services.CategoriesApiService;
 import com.example.newsapp.data_model.Category;
 import com.example.newsapp.views.fragments.NewsItemListFragment;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
@@ -73,6 +77,15 @@ public class MainActivity extends AppCompatActivity implements CategoryTagsRecyc
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawerToggle_open,R.string.drawerToggleClose);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
+
+        final NavigationView navigationView = findViewById(R.id.navigationView);
+        navigationView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Utilities.applyFontForAViewGroup(navigationView,MainActivity.this);
+            }
+        },100);
+
     }
 
     private void startCollapsingImageAnimation(){
