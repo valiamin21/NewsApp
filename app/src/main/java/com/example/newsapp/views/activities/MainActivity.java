@@ -88,7 +88,17 @@ public class MainActivity extends AppCompatActivity implements CategoryTagsRecyc
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Log.i(TAG, "onNavigationItemSelected: " + item.getTitle());
+                switch (item.getItemId()){
+                    case R.id.nav_categories:
+
+                        break;
+                    case R.id.nav_settings:
+
+                        break;
+                    case R.id.nav_about:
+                        AboutUsActivity.start(MainActivity.this);
+                        break;
+                }
                 return false;
             }
         });
