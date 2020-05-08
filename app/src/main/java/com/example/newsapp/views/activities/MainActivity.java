@@ -1,4 +1,4 @@
-package com.example.newsapp.views;
+package com.example.newsapp.views.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;

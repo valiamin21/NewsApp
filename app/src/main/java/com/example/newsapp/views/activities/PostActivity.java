@@ -1,4 +1,4 @@
-package com.example.newsapp.views;
+package com.example.newsapp.views.activities;
 
 import android.content.Context;
 import android.content.Intent;
