@@ -41,7 +41,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<NewsListRecycl
         holder.titleText.setText(newsItem.getTitle());
         holder.shortDescriptionText.setText(newsItem.getShortDescription());
         Glide.with(context).load(newsItem.getImage()).into(holder.newsImage);
-        holder.bookmarkButton.setImageResource(newsItem.isBookmarked()? R.drawable.ic_bookmark_black_24dp: R.drawable.ic_bookmark_border_black_24dp);
         holder.categoryNameText.setText(newsItem.getCategoryName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +66,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<NewsListRecycl
 
         private ImageView newsImage;
         private TextView titleText, shortDescriptionText, categoryNameText;
-        private ImageButton bookmarkButton;
 
         public NewsItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,7 +74,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<NewsListRecycl
             titleText = itemView.findViewById(R.id.title_text);
             shortDescriptionText = itemView.findViewById(R.id.shortDescription_text);
             categoryNameText = itemView.findViewById(R.id.category_name_text);
-            bookmarkButton = itemView.findViewById(R.id.bookmark_button);
 
             newsImage.setClipToOutline(true);
         }

@@ -5,7 +5,6 @@ public class NewsItem {
     private String title;
     private String shortDescription;
     private String image;
-    private boolean isBookmarked;
     private String categoryName;
     private int categoryId;
 
@@ -21,10 +20,6 @@ public class NewsItem {
         return shortDescription;
     }
 
-    public boolean isBookmarked() {
-        return isBookmarked;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -35,10 +30,6 @@ public class NewsItem {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
-    }
-
-    public void setBookmarked(boolean bookmarked) {
-        isBookmarked = bookmarked;
     }
 
     public String getImage() {
