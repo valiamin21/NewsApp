@@ -30,4 +30,9 @@ public class Utilities {
     }
 
 
+    // TODO: 5/10/20 using MVC in app
+    // TODO: 5/10/20 implementing dark mode in app
+    // TODO: 5/10/20 using ViewPager and TabView in MainActivity
+    // TODO: 5/10/20 offline mode handling (local database)
+    // TODO: 5/10/20 making library for typeface management
 }
