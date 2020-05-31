@@ -4,10 +4,10 @@
     <color name="colorPrimaryDark">#bb002f</color>
     <color name="colorAccent">#00796b</color>
 
-    <color name="colorPrimaryTransparent">#b1f50057</color>
-
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#4e4e4e</color>
 
-    <color name="white">#FFFFFF</color>
+    <color name="windowBackgroundColor">#e8eaf6</color>
+
+    <color name="not_selected_tag_background_color">#FFFFFF</color>
 </resources>

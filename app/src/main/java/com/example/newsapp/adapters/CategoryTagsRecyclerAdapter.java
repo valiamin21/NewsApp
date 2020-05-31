@@ -49,11 +49,11 @@ public class CategoryTagsRecyclerAdapter extends RecyclerView.Adapter<CategoryTa
         holder.categoryNameTextView.setText(category.getName());
 
         if (position != selectedItem) {
-            holder.categoryTagCardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white));
+            holder.categoryTagCardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.not_selected_tag_background_color));
             holder.categoryNameTextView.setTextColor(ContextCompat.getColor(context,R.color.colorPrimary));
         }else{
             holder.categoryTagCardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
-            holder.categoryNameTextView.setTextColor(ContextCompat.getColor(context,R.color.white));
+            holder.categoryNameTextView.setTextColor(ContextCompat.getColor(context,R.color.not_selected_tag_background_color));
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
