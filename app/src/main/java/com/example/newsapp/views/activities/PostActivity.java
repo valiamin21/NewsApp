@@ -2,6 +2,7 @@ package com.example.newsapp.views.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
@@ -10,6 +11,7 @@ import com.example.newsapp.api_services.PostApiService;
 import com.example.newsapp.data_model.Post;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -89,4 +91,10 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        finish();
+        start(this,postId);
+    }
 }

@@ -7,8 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -30,8 +31,6 @@ import java.util.List;
 import static com.example.newsapp.api_services.NewsListApiService.CATEGORY_DEFAULT_ID;
 
 public class MainActivity extends AppCompatActivity implements CategoryTagsRecyclerAdapter.OnCategoryTagItemSelected {
-
-    private static final String TAG = "NewsPostListActivity";
 
     private RecyclerView categoryTagsRecyclerView;
     private Toolbar toolbar;
@@ -127,6 +126,13 @@ public class MainActivity extends AppCompatActivity implements CategoryTagsRecyc
         animationSet.addAnimation(translateAnimation);
         animationSet.addAnimation(rotateAnimation);
         collapsingImageView.startAnimation(animationSet);
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        finish();
+        startActivity(new Intent(this,MainActivity.class));
     }
 
     @Override // @Implemented :D

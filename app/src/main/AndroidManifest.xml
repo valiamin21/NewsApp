@@ -12,8 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.activities.AboutUsActivity"></activity>
-        <activity android:name=".views.activities.MainActivity">
+        <activity android:name=".views.activities.AboutUsActivity" />
+        <activity
+            android:name=".views.activities.MainActivity"
+            android:configChanges="uiMode">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,6 +24,7 @@
         </activity>
         <activity
             android:name=".views.activities.PostActivity"
+            android:configChanges="uiMode"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
