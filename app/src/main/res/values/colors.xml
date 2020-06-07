@@ -10,4 +10,6 @@
     <color name="windowBackgroundColor">#e8eaf6</color>
 
     <color name="not_selected_tag_background_color">#FFFFFF</color>
+
+    <color name="border_color">#CBCBCB</color>
 </resources>

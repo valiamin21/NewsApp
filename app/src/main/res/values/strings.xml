@@ -13,4 +13,10 @@
     <string name="bookmarked_news">اخبار نشان شده</string>
 
     <string name="about">درباره ما</string>
+    <string name="amin_vali_name">امین والی</string>
+    <string name="amir_hossein_abbas_pur_name">امیرحسین عباس‌پور</string>
+    <string name="amin_vali_email">valiamin21@gmail.com</string>
+    <string name="amir_hossein_abbas_pur_email">salvatore.vd2@gmail.com</string>
+    <string name="amin_vali_post">اپ اندروید</string>
+    <string name="amir_hossein_post">سمت سرور</string>
 </resources>

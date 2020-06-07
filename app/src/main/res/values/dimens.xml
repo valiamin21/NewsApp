@@ -31,4 +31,6 @@
     <dimen name="app_radius_x">10dp</dimen>
 
     <dimen name="app_card_elevation">8dp</dimen>
+
+    <dimen name="profile_circle_image_border_width">1dp</dimen>
 </resources>

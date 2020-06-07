@@ -8,4 +8,6 @@
 
     <color name="primary_text">#ffffff</color>
     <color name="secondary_text">#ffffff</color>
+
+    <color name="border_color">#FFF</color>
 </resources>
