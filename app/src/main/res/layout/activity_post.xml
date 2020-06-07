@@ -117,6 +117,7 @@
         android:layout_margin="@dimen/standard_margin"
         android:layout_marginHorizontal="@dimen/fab_margin"
         app:fabSize="normal"
-        app:srcCompat="@drawable/ic_share_white" />
+        app:srcCompat="@drawable/ic_share_white"
+        android:backgroundTint="@color/colorAccent"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
