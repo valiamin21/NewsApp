@@ -3,6 +3,7 @@ package com.example.newsapp.views.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
@@ -14,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.widget.NestedScrollView;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -48,7 +50,7 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void setupViews() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -64,13 +66,26 @@ public class PostActivity extends AppCompatActivity {
         categoryTextView = findViewById(R.id.category_text);
         dateTextView = findViewById(R.id.date_text);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        final FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // TODO: 4/13/20 share
             }
         });
+
+        NestedScrollView nestedScrollView = findViewById(R.id.nestedScrollView);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            nestedScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                    if(scrollY > oldScrollY)
+                        fab.hide();
+                    else
+                        fab.show();
+                }
+            });
+        }
     }
 
     private void loadDataFromServer() {
