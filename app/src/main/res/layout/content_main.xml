@@ -26,30 +26,33 @@
                 android:src="@drawable/world"
                 app:layout_collapseMode="parallax" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/categoryTags_recyclerView"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/categoryTags_tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="@dimen/standard_margin"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                android:background="@null"
+                android:layoutDirection="rtl"
+                app:tabGravity="fill"
+                app:tabMode="scrollable" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_collapseMode="pin"/>
+                app:layout_collapseMode="pin" />
 
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/news_ViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layoutDirection="rtl"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

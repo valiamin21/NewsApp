@@ -5,7 +5,6 @@
     android:id="@+id/categoryTag_cardView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/small_margin"
     android:clickable="true"
     android:foreground="?attr/selectableItemBackgroundBorderless"
     app:cardCornerRadius="@dimen/app_radius_x"
