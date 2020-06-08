@@ -30,9 +30,9 @@ public class Utilities {
     }
 
 
-    // TODO: 5/10/20 using ViewPager and TabView in MainActivity
     // TODO: 5/10/20 offline mode handling (local database)
     // TODO: 5/10/20 making library for typeface management
     // TODO: 6/7/20 modify date showing implementation
     // TODO: 6/7/20 making categories activity
+    // TODO: 6/8/20 connection error handling and empty category handling
 }
