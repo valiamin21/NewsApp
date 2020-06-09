@@ -13,10 +13,10 @@ import com.example.newsapp.views.fragments.NewsItemListFragment;
 
 import java.util.List;
 
-public class NewsCategoryViewPagerAdaptetr extends FragmentStateAdapter {
+public class NewsCategoryViewPagerAdapter extends FragmentStateAdapter {
     private List<Category> categoryList;
 
-    public NewsCategoryViewPagerAdaptetr(@NonNull FragmentActivity fa, List<Category> categoryList) {
+    public NewsCategoryViewPagerAdapter(@NonNull FragmentActivity fa, List<Category> categoryList) {
         super(fa);
         this.categoryList = categoryList;
     }

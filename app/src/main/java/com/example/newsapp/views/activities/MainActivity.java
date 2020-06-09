@@ -25,7 +25,7 @@ import android.widget.TextView;
 import com.example.newsapp.OnTabSelectionChangedListener;
 import com.example.newsapp.R;
 import com.example.newsapp.Utilities;
-import com.example.newsapp.adapters.NewsCategoryViewPagerAdaptetr;
+import com.example.newsapp.adapters.NewsCategoryViewPagerAdapter;
 import com.example.newsapp.api_services.CategoriesApiService;
 import com.example.newsapp.data_model.Category;
 import com.google.android.material.navigation.NavigationView;
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 category.setId(CATEGORY_DEFAULT_ID);
                 categoryList.add(0,category);
 
-                viewPager.setAdapter(new NewsCategoryViewPagerAdaptetr(MainActivity.this, categoryList));
+                viewPager.setAdapter(new NewsCategoryViewPagerAdapter(MainActivity.this, categoryList));
                 new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
                     @Override
                     public void onConfigureTab(@NonNull TabLayout.Tab tab, final int position) {
