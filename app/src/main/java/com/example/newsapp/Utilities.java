@@ -35,4 +35,5 @@ public class Utilities {
     // TODO: 6/7/20 modify date showing implementation
     // TODO: 6/7/20 making categories activity
     // TODO: 6/8/20 connection error handling and empty category handling
+    // TODO: 6/12/20 implementing pagination in app
 }
