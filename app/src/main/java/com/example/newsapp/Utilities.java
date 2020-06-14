@@ -37,4 +37,5 @@ public class Utilities {
     // TODO: 6/8/20 connection error handling and empty category handling
     // TODO: 6/12/20 implementing pagination in app
     // TODO: 6/12/20 specifying posts that already have been viewed
+    // TODO: 6/14/20 using animations in RecyclerViews
 }
