@@ -11,6 +11,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.newsapp.R;
 import com.example.newsapp.data_model.NewsItem;
+import com.example.newsapp.open_helpers.NewsItemsOpenHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +25,9 @@ public class NewsListApiService {
     public static final int CATEGORY_DEFAULT_ID = -1;
 
     public static void requestNewsList(final Context context, int categoryId, final OnNewsListApiFinished onNewsListApiFinished) {
+        final NewsItemsOpenHelper openHelper = new NewsItemsOpenHelper(context,categoryId);
+        onNewsListApiFinished.onResponse(openHelper.getNewsItems());
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(context.getString(R.string.root_api_url) + (categoryId == CATEGORY_DEFAULT_ID ? "/news/" : "/categories/" + categoryId),
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -42,7 +46,7 @@ public class NewsListApiService {
 
                                 newsItemList.add(newsItem);
                             }
-
+                            openHelper.saveNewsItems(newsItemList);
                             onNewsListApiFinished.onResponse(newsItemList);
                         } catch (JSONException e) {
                             e.printStackTrace();
