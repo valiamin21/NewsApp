@@ -11,6 +11,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.newsapp.R;
 import com.example.newsapp.data_model.Category;
+import com.example.newsapp.open_helpers.CategoriesOpenHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,7 +23,14 @@ import java.util.List;
 public class CategoriesApiService {
     private static final String TAG = "CategoriesApiService";
 
+    private static CategoriesOpenHelper categoriesOpenHelper;
+
     public static void requestCategoriesList(Context context, final OnCategoriesApiFinished onCategoriesApiFinished){
+        if(categoriesOpenHelper == null){
+            categoriesOpenHelper = new CategoriesOpenHelper(context);
+        }
+        onCategoriesApiFinished.onResponse(categoriesOpenHelper.getCategories()); // load from local
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(context.getString(R.string.root_api_url) + "/categories/",
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -39,6 +47,7 @@ public class CategoriesApiService {
                                 categoryList.add(category);
                             }
 
+                            categoriesOpenHelper.saveCategories(categoryList);
                             onCategoriesApiFinished.onResponse(categoryList);
                         }catch (JSONException e){
                             onCategoriesApiFinished.onErrorResponse("json parse error");
