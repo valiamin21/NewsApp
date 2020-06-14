@@ -2,6 +2,8 @@ package com.example.newsapp.api_services;
 
 import android.content.Context;
 
+import androidx.annotation.Nullable;
+
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -10,13 +12,21 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.newsapp.R;
 import com.example.newsapp.data_model.Post;
+import com.example.newsapp.open_helpers.PostsOpenHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class PostApiService {
 
+    private static PostsOpenHelper postsOpenHelper;
+
     public static void requestPost(final Context context, int postId, final OnPostApiFinished onPostApiFinished) {
+        if(postsOpenHelper == null){
+            postsOpenHelper = new PostsOpenHelper(context);
+        }
+        onPostApiFinished.onResponse(postsOpenHelper.getPost(postId));
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(context.getString(R.string.root_api_url) + "/news/" + postId,
                 null, new Response.Listener<JSONObject>() {
             @Override
@@ -31,6 +41,7 @@ public class PostApiService {
                     post.setCategoryName(response.getString("category_name"));
                     post.setCategoryId(response.getInt("category"));
 
+                    postsOpenHelper.savePost(post);
                     onPostApiFinished.onResponse(post);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -50,7 +61,7 @@ public class PostApiService {
     }
 
     public interface OnPostApiFinished {
-        void onResponse(Post post);
+        void onResponse(@Nullable Post post);
 
         void onErrorResponse(String errorMessage);
     }

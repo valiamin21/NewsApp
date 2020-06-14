@@ -92,6 +92,8 @@ public class PostActivity extends AppCompatActivity {
         PostApiService.requestPost(this, postId, new PostApiService.OnPostApiFinished() {
             @Override
             public void onResponse(Post post) {
+                if(post == null)
+                    return;
                 Glide.with(PostActivity.this).load(post.getImage()).into(postImageView);
                 titleTextView.setText(post.getTitle());
                 descriptionTextView.setText(post.getLongDescription());
