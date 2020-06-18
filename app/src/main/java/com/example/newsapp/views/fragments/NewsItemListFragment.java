@@ -1,7 +1,9 @@
 package com.example.newsapp.views.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.newsapp.R;
 import com.example.newsapp.adapters.NewsListRecyclerAdapter;
 import com.example.newsapp.api_services.NewsListApiService;
 import com.example.newsapp.data_model.NewsItem;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -26,6 +28,8 @@ public class NewsItemListFragment extends Fragment {
     private RecyclerView newsListRecyclerView;
     private NewsListRecyclerAdapter recyclerAdapter;
 
+    private OnNewsListFragmentErrorResponse onNewsListFragmentErrorResponse;
+
     public NewsItemListFragment() {
         // Required empty public constructor
     }
@@ -36,6 +40,16 @@ public class NewsItemListFragment extends Fragment {
         args.putInt(ARG_CATEGORY_ID, categoryId);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if(context instanceof OnNewsListFragmentErrorResponse){
+            onNewsListFragmentErrorResponse = (OnNewsListFragmentErrorResponse) context;
+        }else{
+            throw new ClassCastException(context.toString() + " must implement OnNewsListFragmentErrorResponse");
+        }
     }
 
     @Override
@@ -70,7 +84,7 @@ public class NewsItemListFragment extends Fragment {
 
             @Override
             public void onErrorResponse(String errorMessage) {
-                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                onNewsListFragmentErrorResponse.onErrorResponse(errorMessage);
             }
         });
     }
@@ -78,5 +92,9 @@ public class NewsItemListFragment extends Fragment {
     public void setCategoryId(int categoryId){
         this.categoryId = categoryId;
         loadDataFromServer();
+    }
+
+    public interface OnNewsListFragmentErrorResponse{
+        void onErrorResponse(String errorMessage);
     }
 }

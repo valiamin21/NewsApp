@@ -11,6 +11,7 @@ import com.example.newsapp.R;
 import com.example.newsapp.api_services.PostApiService;
 import com.example.newsapp.data_model.Post;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,6 @@ import androidx.core.widget.NestedScrollView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class PostActivity extends AppCompatActivity {
@@ -79,7 +79,7 @@ public class PostActivity extends AppCompatActivity {
             nestedScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
                 @Override
                 public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                    if(scrollY > oldScrollY)
+                    if (scrollY > oldScrollY)
                         fab.hide();
                     else
                         fab.show();
@@ -92,7 +92,7 @@ public class PostActivity extends AppCompatActivity {
         PostApiService.requestPost(this, postId, new PostApiService.OnPostApiFinished() {
             @Override
             public void onResponse(Post post) {
-                if(post == null)
+                if (post == null)
                     return;
                 Glide.with(PostActivity.this).load(post.getImage()).into(postImageView);
                 titleTextView.setText(post.getTitle());
@@ -103,7 +103,13 @@ public class PostActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(String errorMessage) {
-                Toast.makeText(PostActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                Snackbar.make(titleTextView, R.string.server_communication_problem, Snackbar.LENGTH_INDEFINITE)
+                        .setAction(R.string.try_again, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                loadDataFromServer();
+                            }
+                        }).show();
             }
         });
     }
@@ -112,6 +118,6 @@ public class PostActivity extends AppCompatActivity {
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         finish();
-        start(this,postId);
+        start(this, postId);
     }
 }

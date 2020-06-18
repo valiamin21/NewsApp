@@ -19,4 +19,7 @@
     <string name="amir_hossein_abbas_pur_email">salvatore.vd2@gmail.com</string>
     <string name="amin_vali_post">اپ اندروید</string>
     <string name="amir_hossein_post">سمت سرور</string>
+
+    <string name="server_communication_problem">مشکل در ارتباط با سرور</string>
+    <string name="try_again">تلاش دوباره</string>
 </resources>

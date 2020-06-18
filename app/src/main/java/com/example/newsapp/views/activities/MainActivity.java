@@ -28,7 +28,9 @@ import com.example.newsapp.Utilities;
 import com.example.newsapp.adapters.NewsCategoryViewPagerAdapter;
 import com.example.newsapp.api_services.CategoriesApiService;
 import com.example.newsapp.data_model.Category;
+import com.example.newsapp.views.fragments.NewsItemListFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -37,7 +39,7 @@ import java.util.List;
 import static com.example.newsapp.api_services.NewsListApiService.CATEGORY_DEFAULT_ID;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CategoriesApiService.OnCategoriesApiFinished, NewsItemListFragment.OnNewsListFragmentErrorResponse {
 
     private ImageView collapsingImageView;
     private ViewPager2 viewPager;
@@ -49,42 +51,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setupViews();
 
-        CategoriesApiService.requestCategoriesList(this, new CategoriesApiService.OnCategoriesApiFinished() {
-            @Override
-            public void onResponse(final List<Category> categoryList) {
-                // category for showing all news
-                Category category = new Category();
-                category.setName(getString(R.string.all_news));
-                category.setId(CATEGORY_DEFAULT_ID);
-                categoryList.add(0,category);
+        loadDataFromServer();
+    }
 
-                viewPager.setAdapter(new NewsCategoryViewPagerAdapter(MainActivity.this, categoryList));
-                new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
-                    @Override
-                    public void onConfigureTab(@NonNull TabLayout.Tab tab, final int position) {
-                        tab.setCustomView(R.layout.item_category_tab_layout_tag);
-                        ((TextView) tab.getCustomView().findViewById(R.id.category_name_text)).setText(categoryList.get(position).getName());
-
-                        applySelectionStateToTabLayoutTab(tab, position == viewPager.getCurrentItem());
-
-                        tab.getCustomView().setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                viewPager.setCurrentItem(position);
-                            }
-
-                        });
-                    }
-                }).attach();
-
-
-            }
-
-            @Override
-            public void onErrorResponse(String errorMessage) {
-                // TODO: 4/28/20
-            }
-        });
+    private void loadDataFromServer() {
+        CategoriesApiService.requestCategoriesList(this, this);
     }
 
     private void setupViews() {
@@ -187,4 +158,42 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, MainActivity.class));
     }
 
+    @Override
+    public void onResponse(final List<Category> categoryList) {
+        // category for showing all news
+        Category category = new Category();
+        category.setName(getString(R.string.all_news));
+        category.setId(CATEGORY_DEFAULT_ID);
+        categoryList.add(0, category);
+
+        viewPager.setAdapter(new NewsCategoryViewPagerAdapter(MainActivity.this, categoryList));
+        new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, final int position) {
+                tab.setCustomView(R.layout.item_category_tab_layout_tag);
+                ((TextView) tab.getCustomView().findViewById(R.id.category_name_text)).setText(categoryList.get(position).getName());
+
+                applySelectionStateToTabLayoutTab(tab, position == viewPager.getCurrentItem());
+
+                tab.getCustomView().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        viewPager.setCurrentItem(position);
+                    }
+
+                });
+            }
+        }).attach();
+    }
+
+    @Override
+    public void onErrorResponse(String errorMessage) {
+        Snackbar.make(viewPager, R.string.server_communication_problem, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.try_again, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        loadDataFromServer();
+                    }
+                }).show();
+    }
 }
